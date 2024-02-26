@@ -1,0 +1,190 @@
+<style>
+    .add-user-hide {
+        display: none;
+    }
+    .add-user {
+        display: block;
+    }
+    .add-user p {
+        display: inline;
+        margin-right: 150px;
+    }
+
+    .add-user input {
+        margin-right: 20px;
+    }
+</style>
+
+<div>
+    <h1>List of users</h1>
+    <div>
+        <button (click)="add()">{{hideFlag ? 'Add' : 'Hide'}}</button>
+    </div>
+    <div [ngClass]="{'add-user-hide': hideFlag, 'add-user': !hideFlag}">
+        <p>Name:</p>
+        <p>Age:</p>
+        <div>
+            <input type="text" [(ngModel)]="userName">
+            <input type="number" [(ngModel)]="userAge">
+            <button (click)="addUser()">Add User</button>
+        </div>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+            @for(user of myUsers; track $index) {
+                <tr>
+                    <td>
+                        <ng-container *ngIf="editUserId !== user.id; else editId">
+                            {{user.id}}
+                        </ng-container>
+                        <ng-template #editId>
+                            <input type="text" [(ngModel)]="user.id" disabled>
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="editUserId !== user.id; else editName">
+                            {{user.name}}
+                        </ng-container>
+                        <ng-template #editName>
+                            <input type="text" [(ngModel)]="user.name">
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="editUserId !== user.id; else editAge">
+                            {{user.age}}
+                        </ng-container>
+                        <ng-template #editAge>
+                            <input type="number" [(ngModel)]="user.age">
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="editUserId !== user.id; else editMode">
+                            <button (click)="edit(user.id)">Edit</button>
+                            <button (click)="deleteUser(user.id)">Delete</button>
+                        </ng-container>
+                        <ng-template #editMode>
+                            <button (click)="saveEditedUser(user.id)">Save</button>
+                            <button (click)="cancel()">Cancel</button>
+                        </ng-template>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<!--<div>
+    <ul>
+        @for(user of pusers | async; track $index) {
+            <li>{{user.name}} {{user.age}}</li>
+        }
+    </ul>
+</div>
+
+<div>
+    <p>Model: {{phone | async}}</p>
+    <button (click)="showPhones()">Show models</button>
+</div>
+
+<div>
+    <div>
+        <input type="text" #user name="user">
+        <button (click)="users.push(user.value)">Add User</button>
+    </div>
+    <p>Date (no format): {{myDate}}</p>
+    <p>Date (with format): {{myDate | date:"dd.MM.yyyy"}}</p>
+    <p>{{welcome | uppercase | slice:3}}</p>
+    <p>{{welcome | lowercase | slice:6:11}}</p>
+    <p>{{percentage | percent}}</p>
+    <p>{{percentage | currency: "UAH":"symbol-narrow":"1.1-2"}}</p>
+    <p>{{percentage | format}}</p>
+    <p>{{users | join}}</p>
+    <p>{{users | join:2}}</p>
+    <p>{{users | join:1:3}}</p>
+</div>
+
+
+<div>
+    <nav>
+        <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">HomePage</a>
+        <a routerLink="/about" routerLinkActive="active">About Site</a>
+        <a routerLink="/item/8">Item 8</a>
+        <a routerLink="/item/5" [queryParams]="{'product': 'tablet', 'price': 200}">Item 5</a>
+    </nav>
+
+    <form>
+        <div>
+            <label>Model number:</label>
+            <input type="number" [(ngModel)]="number">
+        </div>
+        <div>
+            <label>Price:</label>
+            <input type="number" [(ngModel)]="price">
+        </div>
+        <div>
+            <label>Product:</label>
+            <input type="text" [(ngModel)]="product">
+        </div>
+    </form>
+
+    <button (click)="goToProduct()">Go to product</button>
+
+    <router-outlet></router-outlet>
+</div>
+
+<div>
+    <button (click)="performAuth()">Auth button</button>
+    <p>State: {{this.authService.isLoggedIn}}</p>
+</div>
+
+<div>
+    <div>
+        <label>First Number:</label>
+        <input type="number" [(ngModel)]="num1">
+    </div>
+    <div>
+        <label>Second number:</label>
+        <input type="number" [(ngModel)]="num2">
+    </div>
+    <div>
+        <button (click)="calc()">Calculate</button>
+    </div>
+    <div>
+        <p>Result: {{isLoading ? '...' : result}}</p>
+    </div>
+</div>
+
+<br>
+
+<div>
+    <div>
+        <label>Name:</label>
+        <input type="text" [(ngModel)]="user.name">
+    </div>
+    <div>
+        <label>Age:</label>
+        <input type="number" [(ngModel)]="user.age">
+    </div>
+    <div>
+        <button (click)="send()">Send</button>
+    </div>
+</div>
+
+<div>
+    @if(isDone) {
+        <h1>Server response</h1>
+        <div>
+            <p>Name: {{modifiedUser?.name}}</p>
+            <p>Age: {{modifiedUser?.age}}</p>
+        </div>
+    }
+</div>
+<br>
+<br>
+<my-calculator></my-calculator>
+<tutorial></tutorial>-->

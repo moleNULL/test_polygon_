@@ -1,0 +1,15 @@
+<div class="calculator">
+    <h2>Calculator</h2>
+    <input type="number" class="calculator__input" [(ngModel)]="x">
+    <select [(ngModel)]="operation" class="calculator__select">
+        <option [value]="operation" *ngFor="let operation of operations">{{operation}}</option>
+    </select>
+    <input type="number" class="calculator__input" [(ngModel)]="y">
+
+    <p class="calculator__presult">
+        Result: <span class="calculator__result">{{result === undefined || result === null ? 'Press calculate!' : result}}</span>
+    </p>
+
+
+    <button class="calculator__button" (click)="calc()">Calculate</button>
+</div>

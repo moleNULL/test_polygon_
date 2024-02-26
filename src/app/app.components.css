@@ -1,0 +1,17 @@
+.alert {
+    color: red;
+}
+
+div {
+    margin: 5px 0;
+}
+
+input.ng-touched.ng-invalid {
+    border-color: red;
+    background-color: indianred;
+}
+
+input.ng-touched.ng-valid {
+    border: solid green 2px;
+    background-color: lightgreen;
+}
